@@ -15,10 +15,11 @@ app.post("/events", async (req, res) => {
   try {
     await axios.post("http://posts-clusterip-srv:4000/events", event);
     await axios.post("http://comments-clusterip-srv:8080/events", event);
-    await axios.post("http://moderation-cluterip-srv:4004/events", event);
+    await axios.post("http://moderation-clusterip-srv:4004/events", event);
     await axios.post("http://query-clusterip-srv:4005/events", event);
   } catch (error) {
-    console.log(error);
+    console.log("ERRO OCCURED !!!")
+    console.log(error.message);
   }
 
   res.status(200).send({ status: "OK" });
